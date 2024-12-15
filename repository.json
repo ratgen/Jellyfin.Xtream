@@ -9,11 +9,11 @@
     "versions": [
       {
         "changelog": "",
-        "checksum": "47d5b1a37518d0f2bf11ddd83f391e38",
-        "sourceUrl": "https://github.com/ratgen/Jellyfin.Xtream/releases/download/0.6.4.0/jellyfin-xtream_0.6.3.0.zip",
-        "targetAbi": "10.9.2.0",
-        "timestamp": "2024-12-15T18:28:37Z",
-        "version": "0.6.3.0"
+        "checksum": "8b0c85265d963f16ae57d77de1678ff4",
+        "sourceUrl": "https://github.com/ratgen/Jellyfin.Xtream/releases/download/0.6.4.0/jellyfin-xtream_0.6.4.0.zip",
+        "targetAbi": "10.10.3.0",
+        "timestamp": "2024-12-15T18:38:45Z",
+        "version": "0.6.4.0"
       }
     ]
   }
