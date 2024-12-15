@@ -123,7 +123,7 @@ public class CatchupChannel : IChannel
     {
         Plugin plugin = Plugin.Instance;
         List<ChannelItemInfo> items = new List<ChannelItemInfo>();
-        await foreach (StreamInfo channel in plugin.StreamService.GetLiveStreamsWithOverrides(cancellationToken))
+        await foreach (StreamInfo channel in plugin.StreamService.GetLiveStreamsWithOverrides(cancellationToken).ConfigureAwait(true))
         {
             if (!channel.TvArchive)
             {

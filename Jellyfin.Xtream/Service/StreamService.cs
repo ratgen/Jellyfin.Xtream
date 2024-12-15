@@ -185,7 +185,7 @@ public class StreamService
     public async IAsyncEnumerable<StreamInfo> GetLiveStreamsWithOverrides([EnumeratorCancellation] CancellationToken cancellationToken)
     {
         PluginConfiguration config = Plugin.Instance.Configuration;
-        await foreach (StreamInfo stream in GetLiveStreams(cancellationToken))
+        await foreach (StreamInfo stream in GetLiveStreams(cancellationToken).ConfigureAwait(true))
         {
             if (config.LiveTvOverrides.TryGetValue(stream.StreamId, out ChannelOverrides? overrides))
             {

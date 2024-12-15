@@ -154,7 +154,7 @@ public class VodChannel : IChannel
     private async Task<ChannelItemResult> GetCategories(CancellationToken cancellationToken)
     {
         List<ChannelItemInfo> items = new List<ChannelItemInfo>(
-            (await Plugin.Instance.StreamService.GetVodCategories(cancellationToken))
+            (await Plugin.Instance.StreamService.GetVodCategories(cancellationToken).ConfigureAwait(true))
                 .Select((Category category) => StreamService.CreateChannelItemInfo(StreamService.VodCategoryPrefix, category)));
         return new ChannelItemResult()
         {
@@ -166,7 +166,7 @@ public class VodChannel : IChannel
     private async Task<ChannelItemResult> GetStreams(int categoryId, CancellationToken cancellationToken)
     {
         List<ChannelItemInfo> items = new List<ChannelItemInfo>(
-            (await Plugin.Instance.StreamService.GetVodStreams(categoryId, cancellationToken))
+            (await Plugin.Instance.StreamService.GetVodStreams(categoryId, cancellationToken).ConfigureAwait(true))
                 .Select((StreamInfo stream) => CreateChannelItemInfo(stream)));
         ChannelItemResult result = new ChannelItemResult()
         {
