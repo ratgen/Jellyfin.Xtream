@@ -11,7 +11,7 @@ To add the repository, follow these steps:
 1. Select the `Repositories` tab on the top of the page.
 1. Click the `+` symbol to add a repository.
 1. Enter `Jellyfin.Xtream` as the repository name.
-1. Enter [`https://kevinjil.github.io/Jellyfin.Xtream/repository.json`](https://ratgen.github.io/Jellyfin.Xtream/repository.json) as the repository url.
+1. Enter [`https://ratgen.github.io/Jellyfin.Xtream/repository.json`](https://ratgen.github.io/Jellyfin.Xtream/repository.json) as the repository url.
 1. Click save.
 
 To install or update the plugin, follow these steps:
