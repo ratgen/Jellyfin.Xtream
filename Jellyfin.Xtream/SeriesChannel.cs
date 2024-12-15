@@ -105,24 +105,24 @@ public class SeriesChannel : IChannel
         {
             if (string.IsNullOrEmpty(query.FolderId))
             {
-                return await GetCategories(cancellationToken).ConfigureAwait(false);
+                return await GetCategories(cancellationToken);
             }
 
             Guid guid = Guid.Parse(query.FolderId);
             StreamService.FromGuid(guid, out int prefix, out int categoryId, out int seriesId, out int seasonId);
             if (prefix == StreamService.SeriesCategoryPrefix)
             {
-                return await GetSeries(categoryId, cancellationToken).ConfigureAwait(false);
+                return await GetSeries(categoryId, cancellationToken);
             }
 
             if (prefix == StreamService.SeriesPrefix)
             {
-                return await GetSeasons(seriesId, cancellationToken).ConfigureAwait(false);
+                return await GetSeasons(seriesId, cancellationToken);
             }
 
             if (prefix == StreamService.SeasonPrefix)
             {
-                return await GetEpisodes(seriesId, seasonId, cancellationToken).ConfigureAwait(false);
+                return await GetEpisodes(seriesId, seasonId, cancellationToken);
             }
         }
         catch (Exception ex)
@@ -247,7 +247,7 @@ public class SeriesChannel : IChannel
     private async Task<ChannelItemResult> GetCategories(CancellationToken cancellationToken)
     {
         List<ChannelItemInfo> items = new List<ChannelItemInfo>(
-            (await Plugin.Instance.StreamService.GetSeriesCategories(cancellationToken).ConfigureAwait(false))
+            (await Plugin.Instance.StreamService.GetSeriesCategories(cancellationToken))
                 .Select((Category category) => StreamService.CreateChannelItemInfo(StreamService.SeriesCategoryPrefix, category)));
         return new ChannelItemResult()
         {
@@ -259,7 +259,7 @@ public class SeriesChannel : IChannel
     private async Task<ChannelItemResult> GetSeries(int categoryId, CancellationToken cancellationToken)
     {
         List<ChannelItemInfo> items = new List<ChannelItemInfo>(
-            (await Plugin.Instance.StreamService.GetSeries(categoryId, cancellationToken).ConfigureAwait(false))
+            (await Plugin.Instance.StreamService.GetSeries(categoryId, cancellationToken))
                 .Select((Series series) => CreateChannelItemInfo(series)));
         return new ChannelItemResult()
         {
@@ -271,7 +271,7 @@ public class SeriesChannel : IChannel
     private async Task<ChannelItemResult> GetSeasons(int seriesId, CancellationToken cancellationToken)
     {
         List<ChannelItemInfo> items = new List<ChannelItemInfo>(
-            (await Plugin.Instance.StreamService.GetSeasons(seriesId, cancellationToken).ConfigureAwait(false))
+            (await Plugin.Instance.StreamService.GetSeasons(seriesId, cancellationToken))
                 .Select((Tuple<SeriesStreamInfo, int> tuple) => CreateChannelItemInfo(seriesId, tuple.Item1, tuple.Item2)));
         return new ChannelItemResult()
         {
@@ -283,7 +283,7 @@ public class SeriesChannel : IChannel
     private async Task<ChannelItemResult> GetEpisodes(int seriesId, int seasonId, CancellationToken cancellationToken)
     {
         List<ChannelItemInfo> items = new List<ChannelItemInfo>(
-            (await Plugin.Instance.StreamService.GetEpisodes(seriesId, seasonId, cancellationToken).ConfigureAwait(false))
+            (await Plugin.Instance.StreamService.GetEpisodes(seriesId, seasonId, cancellationToken))
                 .Select((Tuple<SeriesStreamInfo, Season?, Episode> tuple) => CreateChannelItemInfo(tuple.Item1, tuple.Item2, tuple.Item3)));
         return new ChannelItemResult()
         {
